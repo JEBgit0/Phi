@@ -1,0 +1,445 @@
+/* ---------- Themes ----------
+   Every colour lives in a variable. :root is the light theme (the default).
+   Setting data-theme="dark" or "forest" on <html> overrides the variables,
+   and everything below picks up the new values automatically. */
+:root {
+    color-scheme: light;
+    --bg: #ffffff;
+    --text: #000000;
+    --sidebar-bg: #f3f5f8;
+    --border: #dddddd;          /* thin dividers */
+    --box-border: #333333;      /* outlines of the clickable boxes */
+    --hover: rgba(0, 0, 0, 0.08);
+    --card-hover: #dddddd;
+    --button-bg: #f3f5f87d;
+    --button-text: #333333;
+    --plot-bg: #fafafa;
+    --plot-border: #cccccc;
+    --scrollbar: #c4c8ce;       /* scrollbar handle */
+    --accent: #000000;          /* titles and φ */
+    --font: serif;
+}
+:root[data-theme="cream"] {
+    color-scheme: light;
+    --bg: #f5efe0;
+    --text: #3b3226;
+    --sidebar-bg: #ece4d0;
+    --border: #d9cfb8;
+    --box-border: #5a4d3a;
+    --hover: rgba(90, 70, 40, 0.08);
+    --card-hover: #e6dcc4;
+    --button-bg: #ece4d07d;
+    --button-text: #4a3f30;
+    --plot-bg: #f8f3e7;
+    --plot-border: #d4c9b0;
+    --scrollbar: #cbbd9e;
+    --accent: #3b3226;
+    --font: serif;
+}
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #111111;
+    --text: #eeeeee;
+    --sidebar-bg: #1c1e21;
+    --border: #333333;
+    --box-border: #cccccc;
+    --hover: rgba(255, 255, 255, 0.1);
+    --card-hover: #222222;
+    --button-bg: #1c1e217d;
+    --button-text: #cccccc;
+    --plot-bg: #161616;
+    --plot-border: #444444;
+    --scrollbar: #444444;
+    --accent: #ffffff;
+    --font: serif;
+}
+:root[data-theme="forest"] {
+    color-scheme: dark;
+    --bg: #1a2418;
+    --text: #c8d8b8;
+    --sidebar-bg: #1f2b1c;
+    --border: #34462f;
+    --box-border: #4f6b45;
+    --hover: rgba(156, 207, 122, 0.12);
+    --card-hover: #2a3a26;
+    --button-bg: #2a3a267d;
+    --button-text: #c8d8b8;
+    --plot-bg: #1f2b1c;
+    --plot-border: #34462f;
+    --scrollbar: #3f5638;
+    --accent: #9ccf7a;
+    --font: serif;
+}
+
+/* Scrollbars follow the theme. The value is inherited, so setting it here
+   covers the sidebar, pages and plots too. */
+:root {
+    scrollbar-color: var(--scrollbar) transparent;
+    --phi: 1.618034;
+}
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+}
+.layout {
+    display: flex;
+    height: 100vh;
+}
+.sidebar {
+    background: var(--sidebar-bg);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    width: 300px;
+    padding: 12px;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+}
+.sidebar li {
+    padding: 5px;
+}
+.sidebar ul {
+    list-style: lower-roman;
+}
+.click-course {
+    cursor: pointer;
+}
+.click-course:hover {
+    background: var(--hover);
+    border-radius: 4px;
+}
+.menu-button {
+    font-size: 22px;
+    color: var(--button-text);
+    background: var(--button-bg);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+}
+.menu-button:hover {
+    background: var(--hover);
+}
+.home-button {
+    font-size: 30px;
+    color: var(--button-text);
+    background: var(--button-bg);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+}
+.home-button:hover {
+    background: var(--hover);
+}
+.home {
+    flex: 1;
+    overflow: hidden;
+    font-size: min(1.25vw, 2.5vh);
+}
+.home-track {
+    height: 200%;
+    transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.home-track.show-intro {
+    transform: translateY(-50%);
+}
+@media (prefers-reduced-motion: reduce) {
+    .home-track {
+        transition: none;
+    }
+}
+.home-section {
+    position: relative;
+    height: 50%;
+    box-sizing: border-box;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.home-section > svg {
+    width: 30.3125em;
+    height: auto;
+}
+.scroll-button {
+    font-size: 22px;
+    color: var(--button-text);
+    background: var(--button-bg);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.scroll-button.up {
+    top: 24px;
+    bottom: auto;
+}
+.scroll-button:hover {
+    background: var(--hover);
+}
+.intro .big-title {
+    font-size: 2em;
+}
+.intro-subtitle {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 1.5em;
+}
+.intro-text {
+    max-width: 32em;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.6;
+}
+.home-section > .menu-hint {
+    position: absolute;
+    top: 54px;
+    left: 20px;
+    width: 240px;
+    height: 120px;
+    opacity: 0.4;
+}
+.layout:has(.sidebar) .menu-hint {
+    display: none;
+}
+.topic-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+.quote {
+    font-style: italic;
+}
+.author {
+    text-align: center;
+    font-style: italic;
+}
+.site-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+.course-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    font-size: min(1.25vw, 2.5vh);
+}
+.course-page > svg {
+    width: 12.5em;
+    height: auto;
+}
+.big-title {
+    text-align: center;
+    font-size: 2.25em;
+    font-weight: bold;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4em;
+}
+.course-split {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 1.5em;
+    padding: 0.75em;
+}
+.course-half {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid var(--box-border);
+    border-radius: 1%;
+    padding: 1em;
+}
+.course-half:hover {
+    background-color: var(--card-hover);
+}
+.phi {
+    text-align: center;
+    font-size: 24px;
+    color: var(--accent);
+}
+.corner-button {
+    font-size: 12px;
+    color: var(--button-text);
+    background: var(--button-bg);
+    border: none;
+    width: 80px;
+    height: 40px;
+    border-radius: 5%;
+    cursor: pointer;
+    position: fixed;
+    top: 12px;
+    right: 24px;
+    z-index: 10;
+}
+.corner-button:hover {
+    background: var(--hover);
+}
+.model-page {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.model {
+    --rect: min(calc(0.9 * 100vw), calc(0.9 * 100vh * var(--phi)));
+    gap: 2.5em;
+    display: flex;
+    flex: none;
+    width: var(--rect);
+    aspect-ratio: var(--phi);
+    min-height: 0;
+    box-sizing: border-box;
+    font-size: calc(0.011 * var(--rect));
+}
+.model button,
+.model select {
+    font: inherit;
+}
+.model-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    align-items: center;
+}
+.model-body {
+    flex: 1;
+    min-height: 0;
+    max-width: 65ch;
+    overflow-y: auto;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    padding-right: 1em;
+}
+.model-box {
+    flex: none;
+    width: calc(100% / var(--phi));
+    box-sizing: border-box;
+    padding: 1em;
+    border: 2px solid var(--box-border);
+}
+.model-stack {
+    display: flex;
+    flex-direction: column;
+}
+.model-stack > .plot {
+    flex: none;
+}
+.model-controls {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+.model-controls > button {
+    flex: none;
+    width: calc(100% / (var(--phi) * var(--phi)) - 2em);
+    margin: 1em;
+    color: var(--button-text);
+    background: var(--button-bg);
+    border: none;
+    border-radius: 5%;
+    cursor: pointer;
+    font-size: calc(var(--phi) * 1em);
+}
+.model-matrix {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: calc(100% / (var(--phi) * var(--phi)));
+    box-sizing: border-box;
+    padding: 1em;
+}
+.model-matrix th,
+.model-matrix td {
+    line-height: 1.8;
+    text-align: center;
+}
+.model-controls > button:hover {
+    background: var(--hover);
+}
+.model-stats {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.plot{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--plot-border);
+    background: var(--plot-bg);
+    font-size: 16px;
+}
+.plot text {
+    fill: currentColor;
+}
+.plot .tick {
+    font-size: 12px;
+}
+.theme-select {
+    font-size: 12px;
+    color: var(--button-text);
+    background: var(--button-bg);
+    border: none;
+    width: 100px;
+    height: 20px;
+    border-radius: 5%;
+    cursor: pointer;
+    display: block;
+    margin-inline: auto;
+}
+.theme-select:hover {
+    background: var(--hover);
+}
+/* All selects (theme + ticker): solid themed colours, because the open
+   dropdown list can't show the see-through button colours properly. */
+select {
+    color: var(--text);
+    background: var(--sidebar-bg);
+    border: 1px solid var(--border);
+}
+select option {
+    color: var(--text);
+    background: var(--sidebar-bg);
+}
+.sidebar a {
+    color: inherit;
+}

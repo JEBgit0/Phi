@@ -1,0 +1,9 @@
+[{"ticker": "AAPL", "name": "Apple", "region": "US"}, 
+{"ticker": "MSFT", "name": "Microsoft", "region": "US"}, 
+{"ticker": "KO", "name": "Coca-Cola", "region": "US"}, 
+{"ticker": "ASML.AS", "name": "ASML", "region": "Europe"}, 
+{"ticker": "SAP.DE", "name": "SAP", "region": "Europe"}, 
+{"ticker": "MC.PA", "name": "LVMH", "region": "Europe"}, 
+{"ticker": "EQNR.OL", "name": "Equinor", "region": "Norway"}, 
+{"ticker": "DNB.OL", "name": "DNB", "region": "Norway"}, 
+{"ticker": "NHY.OL", "name": "Norsk Hydro", "region": "Norway"}]
