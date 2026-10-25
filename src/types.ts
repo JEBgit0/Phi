@@ -6,7 +6,7 @@ import type { ItemData } from './sections';
 type PageId<C> = C extends { page: infer P } ? P : never;
 type TopicId<C> = C extends { topics: readonly { id: infer I }[] } ? I : never;
 
-export type Page = 'home' | PageId<CourseData> | TopicId<CourseData> | PageId<ItemData>;
+export type Page = 'home' | 'models' | TopicId<CourseData> | PageId<ItemData>;
 
 export type Theme = 
     'light' | 'dark' | 'forest' | 'cream';

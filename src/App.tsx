@@ -28,18 +28,24 @@ export default function App() {
         return () => window.removeEventListener('hashchange', onHash);
     }, []);
 
-    const [theme, setTheme] = useState<Theme>(() => (localStorage.getItem('theme') ?? 'forest') as Theme);
+    const [theme, setTheme] = useState<Theme>(() => (localStorage.getItem('theme') ?? 'cream') as Theme);
     useEffect(() => {
         document.documentElement.dataset.theme = theme;
         localStorage.setItem('theme', theme);
     }, [theme] );
+
+    // Sidebar links also close the sidebar
+    function navigate(p: Page) {
+        setPage(p);
+        setVisible(false);
+    }
 
     return (
         <div className="layout">
             <button className="menu-button" onClick={() => setVisible(!visible)}>
                 ☰
             </button>
-            {visible && <Sidebar onNavigate={setPage} onTheme={setTheme} theme={theme} />}
+            {visible && <Sidebar onNavigate={navigate} onTheme={setTheme} theme={theme} />}
             {registry[page](setPage)}
         </div>
     );

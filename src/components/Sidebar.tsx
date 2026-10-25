@@ -1,4 +1,4 @@
-// Left navigation: home button, theme picker, the course list and every section from sections.ts.
+// Left navigation: home button, theme picker, the models link, the course list and every section from sections.ts.
 import CourseList from "./CourseList";
 import SidebarSection from "./SidebarSection";
 import type { Page, Theme } from '../types'
@@ -20,12 +20,13 @@ export default function Sidebar({ onNavigate, onTheme, theme }:
             </select>
             <p className="site-title">Welcome to φ</p>
             <p className="author">Julian E. Brodahl </p>
-            <h2> Courses at BI</h2>
-            <CourseList onNavigate={onNavigate} />
+            <button className="click-course model-home" onClick={() => onNavigate('models')}>›MODELS‹</button>
             {sections
             .filter(s => s.items.length > 0)
             .map(s =>
                 <SidebarSection key={s.title} section={s} onNavigate={onNavigate} />)}
+            <h2> Courses at BI</h2>
+            <CourseList />
         </nav>
     )
 }

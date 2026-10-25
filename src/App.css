@@ -108,6 +108,20 @@ body {
 .click-course {
     cursor: pointer;
 }
+.click-course.model-home {
+    font: inherit;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid var(--border);
+    color: var(--button-text);
+    background: var(--button-bg);
+    width: 120px;
+    height: 30px;
+    line-height: 22px;
+    display: block;
+    margin: auto;
+}
 .click-course:hover {
     background: var(--hover);
     border-radius: 4px;
@@ -244,7 +258,7 @@ body {
     border-bottom: 1px solid var(--border);
     padding-bottom: 12px;
 }
-.course-page {
+.model-page {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -253,7 +267,7 @@ body {
     overflow-y: auto;
     font-size: min(1.25vw, 2.5vh);
 }
-.course-page > svg {
+.model-page > svg {
     width: 12.5em;
     height: auto;
 }
@@ -265,7 +279,7 @@ body {
     border-bottom: 1px solid var(--border);
     padding-bottom: 0.4em;
 }
-.course-split {
+.model-grid {
     display: flex;
     flex: 1;
     width: 100%;
@@ -273,7 +287,7 @@ body {
     gap: 1.5em;
     padding: 0.75em;
 }
-.course-half {
+.model-card {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -284,7 +298,7 @@ body {
     border-radius: 1%;
     padding: 1em;
 }
-.course-half:hover {
+.model-card:hover {
     background-color: var(--card-hover);
 }
 .phi {
@@ -304,12 +318,12 @@ body {
     position: fixed;
     top: 12px;
     right: 24px;
-    z-index: 10;
+    z-index: 4;         /* below the sidebar (5) */
 }
 .corner-button:hover {
     background: var(--hover);
 }
-.model-page {
+.model-wrap {
     display: flex;
     flex: 1;
     width: 100%;
@@ -442,4 +456,52 @@ select option {
 }
 .sidebar a {
     color: inherit;
+}
+
+/* ---------- Phones ----------
+   Overrides for narrow screens (tested at 393 x 852). */
+@media (max-width: 700px) {
+    .home {
+        font-size: 4vw;
+    }
+    .home-section > svg {
+        width: 100%;
+    }
+    .model-page {
+        font-size: 4vw;
+        justify-content: flex-start;
+        padding-top: 64px;
+    }
+    .model-page > svg {
+        width: 50%;
+    }
+    .model-grid {
+        flex-direction: column;
+    }
+    .topic-page {
+        justify-content: flex-start;
+        padding-top: 64px;
+    }
+    /* Title, then the model box, then the text. display: contents lets
+       the title and body be ordered as if they were children of .model. */
+    .model {
+        flex-direction: column;
+        width: 100%;
+        aspect-ratio: auto;
+        padding: 0 1em 2em;
+        gap: 1.5em;
+        font-size: 3vw;
+    }
+    .model-text {
+        display: contents;
+    }
+    .model-box {
+        order: 1;
+        width: 100%;
+    }
+    .model-body {
+        order: 2;
+        overflow-y: visible;
+        padding-right: 0;
+    }
 }
